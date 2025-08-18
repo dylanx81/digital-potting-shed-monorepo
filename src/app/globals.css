@@ -423,6 +423,84 @@
   .dark .shadow-3xl {
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   }
+
+  /* Dark mode text color fixes */
+  .dark .text-earth-900 {
+    color: #e0e0e0 !important;
+  }
+
+  .dark .text-earth-800 {
+    color: #d0d0d0 !important;
+  }
+
+  .dark .text-earth-700 {
+    color: #c0c0c0 !important;
+  }
+
+  .dark .text-earth-600 {
+    color: #b0b0b0 !important;
+  }
+
+  .dark .text-earth-500 {
+    color: #a0a0a0 !important;
+  }
+
+  .dark .text-earth-400 {
+    color: #909090 !important;
+  }
+
+  .dark .text-earth-300 {
+    color: #808080 !important;
+  }
+
+  .dark .text-earth-200 {
+    color: #707070 !important;
+  }
+
+  .dark .text-earth-100 {
+    color: #606060 !important;
+  }
+
+  .dark .text-earth-50 {
+    color: #505050 !important;
+  }
+
+  /* Ensure proper contrast for dark backgrounds */
+  .dark .bg-earth-800 {
+    background-color: #2a2a2a !important;
+  }
+
+  .dark .bg-earth-700 {
+    background-color: #3a3a3a !important;
+  }
+
+  .dark .bg-earth-600 {
+    background-color: #4a4a4a !important;
+  }
+
+  .dark .bg-earth-500 {
+    background-color: #5a5a5a !important;
+  }
+
+  .dark .bg-earth-400 {
+    background-color: #6a6a6a !important;
+  }
+
+  .dark .bg-earth-300 {
+    background-color: #7a7a7a !important;
+  }
+
+  .dark .bg-earth-200 {
+    background-color: #8a8a8a !important;
+  }
+
+  .dark .bg-earth-100 {
+    background-color: #9a9a9a !important;
+  }
+
+  .dark .bg-earth-50 {
+    background-color: #e0e0e0 !important;
+  }
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
