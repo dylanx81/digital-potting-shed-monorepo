@@ -18,8 +18,6 @@ import {
   FileImage,
 } from "lucide-react";
 
-
-
 interface JournalEntry {
   id: string;
   plantId: string;
@@ -136,7 +134,7 @@ export function AddPlantModal({
                     />
                     <span className="text-sm">{option}</span>
                   </label>
-                ),
+                )
               )}
             </div>
           </div>
@@ -270,40 +268,70 @@ export function FloatingActionButton({
     action();
   };
 
+  const menuItems = [
+    {
+      icon: Camera,
+      label: "Scan Seed Packet",
+      action: onScanSeedPacket,
+      color: "from-blue-400 to-indigo-500",
+      bgColor: "bg-blue-100 dark:bg-blue-900/30",
+      textColor: "text-blue-600 dark:text-blue-400",
+    },
+    {
+      icon: Barcode,
+      label: "Scan Barcode",
+      action: onScanBarcode,
+      color: "from-green-400 to-emerald-500",
+      bgColor: "bg-green-100 dark:bg-green-900/30",
+      textColor: "text-green-600 dark:text-green-400",
+    },
+    {
+      icon: Keyboard,
+      label: "Enter Manually",
+      action: onEnterManually,
+      color: "from-orange-400 to-red-500",
+      bgColor: "bg-orange-100 dark:bg-orange-900/30",
+      textColor: "text-orange-600 dark:text-orange-400",
+    },
+  ];
+
   return (
-    <div className="fixed bottom-6 right-6">
+    <div className="fixed bottom-6 right-6 z-50">
       {/* Menu Options */}
       {isMenuOpen && (
-        <div className="mb-4 space-y-2">
-          <button
-            onClick={() => handleOptionClick(onScanSeedPacket)}
-            className="flex items-center gap-3 rounded-full bg-white px-4 py-3 text-gray-700 shadow-lg transition-all hover:scale-105 hover:bg-gray-50"
-          >
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100">
-              <Camera className="h-5 w-5 text-blue-600" />
-            </div>
-            <span className="font-medium">Scan Seed Packet</span>
-          </button>
-
-          <button
-            onClick={() => handleOptionClick(onScanBarcode)}
-            className="flex items-center gap-3 rounded-full bg-white px-4 py-3 text-gray-700 shadow-lg transition-all hover:scale-105 hover:bg-gray-50"
-          >
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-100">
-              <Barcode className="h-5 w-5 text-green-600" />
-            </div>
-            <span className="font-medium">Scan Barcode</span>
-          </button>
-
-          <button
-            onClick={() => handleOptionClick(onEnterManually)}
-            className="flex items-center gap-3 rounded-full bg-white px-4 py-3 text-gray-700 shadow-lg transition-all hover:scale-105 hover:bg-gray-50"
-          >
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-100">
-              <Keyboard className="h-5 w-5 text-orange-600" />
-            </div>
-            <span className="font-medium">Enter Manually</span>
-          </button>
+        <div className="mb-4 space-y-3">
+          {menuItems.map((item, index) => {
+            const Icon = item.icon;
+            return (
+              <button
+                key={item.label}
+                onClick={() => handleOptionClick(item.action)}
+                className={cn(
+                  "flex items-center gap-3 rounded-full bg-white/90 dark:bg-earth-800/90 backdrop-blur-sm px-4 py-3 text-earth-700 dark:text-earth-300 shadow-xl border border-earth-200 dark:border-earth-700",
+                  "transition-all duration-300 hover:scale-105 hover:shadow-2xl",
+                  "transform opacity-0 animate-in slide-in-from-bottom-2",
+                  "theme-transition"
+                )}
+                style={{
+                  animationDelay: `${index * 100}ms`,
+                  animationFillMode: "forwards",
+                }}
+              >
+                <div
+                  className={cn(
+                    "flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r shadow-md",
+                    item.color
+                  )}
+                >
+                  <Icon className="h-5 w-5 text-white" />
+                </div>
+                <span className="font-semibold whitespace-nowrap">
+                  {item.label}
+                </span>
+                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-sage-400 to-green-500 animate-pulse"></div>
+              </button>
+            );
+          })}
         </div>
       )}
 
@@ -311,12 +339,37 @@ export function FloatingActionButton({
       <button
         onClick={handleButtonClick}
         className={cn(
-          "flex h-14 w-14 items-center justify-center rounded-full bg-green-600 text-white shadow-lg transition-all hover:bg-green-700",
-          isMenuOpen && "rotate-45",
+          "flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-sage-500 to-green-600 hover:from-sage-600 hover:to-green-700 text-white shadow-2xl",
+          "transition-all duration-300 hover:scale-110 hover:shadow-3xl",
+          "focus:outline-none focus:ring-4 focus:ring-sage-500/30 dark:focus:ring-sage-400/30",
+          isMenuOpen &&
+            "rotate-45 bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700",
+          "theme-transition"
         )}
       >
-        <Plus className="h-6 w-6" />
+        <Plus
+          className={cn(
+            "h-7 w-7 transition-transform duration-300",
+            isMenuOpen && "rotate-180"
+          )}
+        />
+
+        {/* Glow effect */}
+        <div
+          className={cn(
+            "absolute inset-0 rounded-full bg-gradient-to-r from-sage-400 to-green-500 opacity-0 blur-xl transition-opacity duration-300",
+            isMenuOpen && "opacity-30"
+          )}
+        />
       </button>
+
+      {/* Background overlay for menu */}
+      {isMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/20 dark:bg-black/40 backdrop-blur-sm z-[-1] animate-in fade-in duration-300"
+          onClick={() => setIsMenuOpen(false)}
+        />
+      )}
     </div>
   );
 }
@@ -397,68 +450,174 @@ export function PlantCard({
   onWaterClick: () => void;
   onHarvestClick: () => void;
 }) {
-  const statusColors = {
-    Sprouting: "bg-yellow-100 text-yellow-800",
-    Flowering: "bg-pink-100 text-pink-800",
-    Fruiting: "bg-orange-100 text-orange-800",
-    "Harvest Ready": "bg-green-100 text-green-800",
-    Dormant: "bg-gray-100 text-gray-800",
+  const [isHovered, setIsHovered] = useState(false);
+
+  const statusConfig = {
+    Sprouting: {
+      color:
+        "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300",
+      accent: "from-yellow-400 to-orange-500",
+    },
+    Flowering: {
+      color: "bg-pink-100 text-pink-800 dark:bg-pink-900/30 dark:text-pink-300",
+      accent: "from-pink-400 to-rose-500",
+    },
+    Fruiting: {
+      color:
+        "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300",
+      accent: "from-orange-400 to-red-500",
+    },
+    "Harvest Ready": {
+      color:
+        "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300",
+      accent: "from-green-400 to-emerald-500",
+    },
+    Dormant: {
+      color: "bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-300",
+      accent: "from-gray-400 to-slate-500",
+    },
   };
 
+  const status = plant.status || "Sprouting";
+  const config = statusConfig[status];
+
   return (
-    <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-md transition-shadow hover:shadow-lg">
-      {/* Photo placeholder */}
-      <div className="mb-4 flex h-32 w-full items-center justify-center rounded-md bg-gradient-to-br from-green-100 to-green-200">
-        <span className="text-sm text-green-600">📸 Plant Photo</span>
-      </div>
-
-      {/* Plant info */}
-      <div className="mb-4">
-        <h3 className="mb-1 text-xl font-semibold text-gray-900">
-          {plant.name}
-        </h3>
-        <p className="mb-2 text-sm text-gray-600">{plant.type}</p>
-
-        <div className="mb-3 flex items-center justify-between">
-          <span
-            className={cn(
-              "rounded-full px-3 py-1 text-xs font-medium",
-              statusColors[plant.status || 'Sprouting'],
-            )}
-          >
-            {plant.status || 'Sprouting'}
-          </span>
-          <span className="text-xs text-gray-500">{plant.source || 'Seed'}</span>
-        </div>
-
-        <div className="space-y-1 text-sm text-gray-600">
-          <div>📍 {plant.location || 'Garden'}</div>
-          <div>🌱 Days since planting: {plant.planting_date ? Math.floor((new Date().getTime() - new Date(plant.planting_date).getTime()) / (1000 * 60 * 60 * 24)) : 0}</div>
-          <div>
-            💧 Last watered: {plant.last_watered ? new Date(plant.last_watered).toLocaleDateString() : 'Never'}
+    <div
+      className={cn(
+        "group relative overflow-hidden rounded-xl border bg-white/90 dark:bg-earth-800/90 backdrop-blur-sm p-6 shadow-lg",
+        "transition-all duration-300 hover:scale-105 hover:shadow-2xl",
+        "theme-transition"
+      )}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Photo placeholder with enhanced styling */}
+      <div className="mb-6 overflow-hidden rounded-lg">
+        <div
+          className={cn(
+            "flex h-40 w-full items-center justify-center bg-gradient-to-br transition-transform duration-300",
+            "from-green-100 via-emerald-100 to-green-200 dark:from-green-900/50 dark:via-emerald-900/50 dark:to-green-800/50",
+            isHovered && "scale-110"
+          )}
+        >
+          <div className="text-center">
+            <div className="mx-auto mb-2 h-12 w-12 rounded-full bg-gradient-to-r from-green-400 to-emerald-500 p-3 shadow-lg">
+              <span className="text-xl">🌱</span>
+            </div>
+            <span className="text-sm font-medium text-green-700 dark:text-green-300">
+              Plant Photo
+            </span>
           </div>
         </div>
       </div>
 
-      {/* Action buttons */}
-      <div className="flex gap-2">
+      {/* Plant info with enhanced styling */}
+      <div className="mb-6">
+        <h3 className="mb-2 text-xl font-bold text-earth-900 dark:text-earth-100 theme-transition">
+          {plant.name}
+        </h3>
+        <p className="mb-3 text-sm font-medium text-earth-600 dark:text-earth-400 theme-transition">
+          {plant.type}
+        </p>
+
+        <div className="mb-4 flex items-center justify-between">
+          <span
+            className={cn(
+              "rounded-full px-3 py-1 text-xs font-semibold shadow-sm",
+              config.color
+            )}
+          >
+            {status}
+          </span>
+          <span className="text-xs font-medium text-earth-500 dark:text-earth-400 theme-transition">
+            {plant.source || "Seed"}
+          </span>
+        </div>
+
+        <div className="space-y-2 text-sm">
+          <div className="flex items-center gap-2 text-earth-600 dark:text-earth-400 theme-transition">
+            <div className="h-2 w-2 rounded-full bg-gradient-to-r from-sage-400 to-green-500"></div>
+            📍 {plant.location || "Garden"}
+          </div>
+          <div className="flex items-center gap-2 text-earth-600 dark:text-earth-400 theme-transition">
+            <div className="h-2 w-2 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500"></div>
+            🌱{" "}
+            {plant.planting_date
+              ? Math.floor(
+                  (new Date().getTime() -
+                    new Date(plant.planting_date).getTime()) /
+                    (1000 * 60 * 60 * 24)
+                )
+              : 0}{" "}
+            days
+          </div>
+          <div className="flex items-center gap-2 text-earth-600 dark:text-earth-400 theme-transition">
+            <div className="h-2 w-2 rounded-full bg-gradient-to-r from-blue-400 to-indigo-500"></div>
+            💧{" "}
+            {plant.last_watered
+              ? new Date(plant.last_watered).toLocaleDateString()
+              : "Never"}
+          </div>
+        </div>
+      </div>
+
+      {/* Progress indicator */}
+      <div className="mb-6">
+        <div className="mb-2 flex items-center justify-between text-xs font-medium text-earth-600 dark:text-earth-400">
+          <span>Growth Progress</span>
+          <span>
+            {Math.min(
+              100,
+              Math.floor(
+                ((new Date().getTime() -
+                  new Date(plant.planting_date || new Date()).getTime()) /
+                  (1000 * 60 * 60 * 24 * 30)) *
+                  100
+              )
+            )}
+            %
+          </span>
+        </div>
+        <div className="h-2 overflow-hidden rounded-full bg-earth-200 dark:bg-earth-700">
+          <div
+            className={cn(
+              "h-full rounded-full bg-gradient-to-r transition-all duration-500",
+              config.accent
+            )}
+            style={{
+              width: `${Math.min(
+                100,
+                Math.floor(
+                  ((new Date().getTime() -
+                    new Date(plant.planting_date || new Date()).getTime()) /
+                    (1000 * 60 * 60 * 24 * 30)) *
+                    100
+                )
+              )}%`,
+            }}
+          ></div>
+        </div>
+      </div>
+
+      {/* Enhanced action buttons */}
+      <div className="flex gap-3">
         <button
           onClick={onWaterClick}
-          className="flex flex-1 items-center justify-center gap-1 rounded-md bg-blue-50 px-3 py-2 text-sm text-blue-700 transition-colors hover:bg-blue-100"
+          className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:scale-105 hover:shadow-lg hover:from-blue-600 hover:to-indigo-700"
         >
           <Droplets className="h-4 w-4" />
           Water
         </button>
         <button
           onClick={onJournalClick}
-          className="flex flex-1 items-center justify-center gap-1 rounded-md bg-amber-50 px-3 py-2 text-sm text-amber-700 transition-colors hover:bg-amber-100"
+          className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-amber-500 to-orange-600 px-4 py-3 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:scale-105 hover:shadow-lg hover:from-amber-600 hover:to-orange-700"
         >
           <BookOpen className="h-4 w-4" />
           Journal
         </button>
         <button
           onClick={onHarvestClick}
-          className="flex flex-1 items-center justify-center gap-1 rounded-md bg-green-50 px-3 py-2 text-sm text-green-700 transition-colors hover:bg-green-100"
+          className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-green-500 to-emerald-600 px-4 py-3 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:scale-105 hover:shadow-lg hover:from-green-600 hover:to-emerald-700"
         >
           <Scissors className="h-4 w-4" />
           Harvest
@@ -467,8 +626,6 @@ export function PlantCard({
     </div>
   );
 }
-
-
 
 export function ScanBarcodeModal({
   isOpen,

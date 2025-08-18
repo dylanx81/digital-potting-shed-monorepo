@@ -208,7 +208,7 @@ export default function GardenDashboard() {
               </StaggeredReveal>
             ) : hasPlants ? (
               <StaggeredReveal>
-                <PlantList plants={filteredPlants} onPlantClick={() => {}} />
+                <PlantList plants={filteredPlants} />
               </StaggeredReveal>
             ) : (
               <StaggeredReveal>
@@ -225,9 +225,9 @@ export default function GardenDashboard() {
         {/* Floating Action Button */}
         {hasPlants && (
           <FloatingActionButton
-            onScanClick={() => setIsScanModalOpen(true)}
-            onBarcodeClick={() => setIsBarcodeModalOpen(true)}
-            onManualClick={() => setIsAddModalOpen(true)}
+            onScanSeedPacket={() => setIsScanModalOpen(true)}
+            onScanBarcode={() => setIsBarcodeModalOpen(true)}
+            onEnterManually={() => setIsAddModalOpen(true)}
           />
         )}
 
