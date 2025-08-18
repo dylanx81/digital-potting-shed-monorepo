@@ -1,0 +1,14 @@
+# Copy this content to a new file called .env.local in the garden-app-clean directory
+
+# Supabase Configuration
+# Replace these with your actual Supabase project credentials
+NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key-here
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key-here
+
+# Google Cloud Vision API (for OCR)
+# Get this from Google Cloud Console
+GOOGLE_CLOUD_API_KEY=your-google-cloud-vision-api-key
+
+# Optional: Force rebuild
+FORCE_REBUILD=false

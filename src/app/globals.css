@@ -1,0 +1,252 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: 22 163 74; /* green-600 */
+  --color-primary-foreground: 255 255 255;
+  --color-secondary: 245 158 11; /* amber-500 */
+  --color-secondary-foreground: 255 255 255;
+  --color-accent: 236 253 245; /* green-50 */
+  --color-accent-foreground: 6 95 70; /* green-800 */
+  
+  --color-background: 255 255 255;
+  --color-foreground: 31 41 55; /* gray-800 */
+  
+  --color-card: 255 255 255;
+  --color-card-foreground: 31 41 55; /* gray-800 */
+  
+  --color-border: 229 231 235; /* gray-200 */
+  
+  --radius: 0.75rem;
+}
+
+.dark {
+  --color-primary: 34 197 94; /* green-500 */
+  --color-primary-foreground: 255 255 255;
+  --color-secondary: 251 191 36; /* amber-400 */
+  --color-secondary-foreground: 255 255 255;
+  --color-accent: 6 78 59; /* green-900 */
+  --color-accent-foreground: 236 253 245; /* green-50 */
+  
+  --color-background: 17 24 39; /* gray-900 */
+  --color-foreground: 243 244 246; /* gray-100 */
+  
+  --color-card: 31 41 55; /* gray-800 */
+  --color-card-foreground: 243 244 246; /* gray-100 */
+  
+  --color-border: 75 85 99; /* gray-600 */
+}
+
+@layer base {
+  :root {
+    /* Design Tokens - Studio Ghibli inspired */
+    --motion-duration-fast: 120ms;
+    --motion-duration-base: 200ms;
+    --motion-duration-slow: 250ms;
+    --motion-ease-natural: cubic-bezier(0.22, 0.61, 0.36, 1);
+    --motion-ease-emphatic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --motion-scale: 1;
+
+    /* Spacing (4-pt system) */
+    --space-2: 0.125rem;
+    --space-4: 0.25rem;
+    --space-8: 0.5rem;
+    --space-12: 0.75rem;
+    --space-16: 1rem;
+    --space-24: 1.5rem;
+    --space-32: 2rem;
+    --space-40: 2.5rem;
+    --space-48: 3rem;
+
+    /* Radii */
+    --radius-sm: 0.375rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-pill: 9999px;
+
+    /* Colors - Warm, organic palette */
+    --color-earth-50: #fefcf8;
+    --color-earth-100: #fdf8f0;
+    --color-earth-200: #faf0e1;
+    --color-earth-300: #f5e4c8;
+    --color-earth-400: #eed4a8;
+    --color-earth-500: #e4c085;
+    --color-earth-600: #d4a85f;
+    --color-earth-700: #c08f45;
+    --color-earth-800: #9e7238;
+    --color-earth-900: #825d32;
+
+    --color-sage-50: #f6f8f5;
+    --color-sage-100: #edf2ea;
+    --color-sage-200: #d9e4d4;
+    --color-sage-300: #b8ccaa;
+    --color-sage-400: #8fad7a;
+    --color-sage-500: #6b8f5a;
+    --color-sage-600: #547345;
+    --color-sage-700: #445c3a;
+    --color-sage-800: #3a4a32;
+    --color-sage-900: #313f2b;
+
+    --color-rose-50: #fef7f7;
+    --color-rose-100: #fdeeee;
+    --color-rose-200: #fbdcdc;
+    --color-rose-300: #f7c2c2;
+    --color-rose-400: #f19a9a;
+    --color-rose-500: #e86b6b;
+    --color-rose-600: #d94a4a;
+    --color-rose-700: #b73a3a;
+    --color-rose-800: #963232;
+    --color-rose-900: #7c2f2f;
+
+    /* Focus ring */
+    --focus-ring: 0 0 0 2px var(--color-sage-200), 0 0 0 4px var(--color-sage-100);
+  }
+
+  /* Motion speed controls */
+  :root[data-motion-speed="calm"] {
+    --motion-scale: 0.5;
+  }
+
+  :root[data-motion-speed="normal"] {
+    --motion-scale: 1;
+  }
+
+  :root[data-motion-speed="lively"] {
+    --motion-scale: 1.5;
+  }
+
+  /* High contrast theme */
+  :root[data-theme="high-contrast"] {
+    --color-earth-50: #ffffff;
+    --color-earth-100: #f8f8f8;
+    --color-earth-200: #e8e8e8;
+    --color-earth-300: #d0d0d0;
+    --color-earth-400: #a8a8a8;
+    --color-earth-500: #808080;
+    --color-earth-600: #585858;
+    --color-earth-700: #404040;
+    --color-earth-800: #282828;
+    --color-earth-900: #000000;
+
+    --color-sage-50: #ffffff;
+    --color-sage-100: #f0f0f0;
+    --color-sage-200: #d8d8d8;
+    --color-sage-300: #b8b8b8;
+    --color-sage-400: #909090;
+    --color-sage-500: #686868;
+    --color-sage-600: #484848;
+    --color-sage-700: #303030;
+    --color-sage-800: #202020;
+    --color-sage-900: #000000;
+
+    --focus-ring: 0 0 0 3px var(--color-sage-900), 0 0 0 6px var(--color-sage-100);
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --motion-duration-fast: 0ms;
+      --motion-duration-base: 0ms;
+      --motion-duration-slow: 0ms;
+      --motion-scale: 0;
+    }
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Accessible focus styles */
+  *:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  /* Minimum tap target size */
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+@layer components {
+  /* Staggered reveal animations */
+  .stagger-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 
+      opacity calc(var(--motion-duration-base) * var(--motion-scale)) var(--motion-ease-natural),
+      transform calc(var(--motion-duration-base) * var(--motion-scale)) var(--motion-ease-natural);
+  }
+
+  .stagger-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Card hover effects */
+  .plant-card {
+    transition: 
+      transform calc(var(--motion-duration-fast) * var(--motion-scale)) var(--motion-ease-natural),
+      box-shadow calc(var(--motion-duration-fast) * var(--motion-scale)) var(--motion-ease-natural);
+  }
+
+  .plant-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Draft card styling */
+  .draft-card {
+    border: 2px dashed var(--color-earth-300);
+    background: var(--color-earth-50);
+  }
+
+  /* Processing animation */
+  .processing-sprout {
+    animation: sprout-grow calc(var(--motion-duration-slow) * var(--motion-scale)) var(--motion-ease-emphatic);
+  }
+
+  @keyframes sprout-grow {
+    0% {
+      transform: scale(0) rotate(-10deg);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.1) rotate(5deg);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(1) rotate(0deg);
+      opacity: 1;
+    }
+  }
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Custom utility for striped background */
+.bg-stripes-amber {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(251, 191, 36, 0.05),
+    rgba(251, 191, 36, 0.05) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+}
