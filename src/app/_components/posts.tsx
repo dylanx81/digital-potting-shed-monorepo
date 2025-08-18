@@ -650,28 +650,28 @@ export function ScanBarcodeModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="w-full max-w-md rounded-lg bg-white p-6 shadow-xl">
+      <div className="w-full max-w-md rounded-lg bg-white dark:bg-gray-800 p-6 shadow-xl">
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-xl font-semibold text-gray-900">Scan Barcode</h2>
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Scan Barcode</h2>
           <button
             onClick={onClose}
-            className="rounded-full p-1 hover:bg-gray-100"
+            className="rounded-full p-1 hover:bg-gray-100 dark:hover:bg-gray-700"
           >
-            <X className="h-5 w-5" />
+            <X className="h-5 w-5 text-gray-900 dark:text-gray-100" />
           </button>
         </div>
 
         <div className="space-y-4">
-          <div className="flex aspect-video items-center justify-center rounded-lg bg-gray-100">
+          <div className="flex aspect-video items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-700">
             {isScanning ? (
               <div className="text-center">
                 <div className="mx-auto mb-2 h-8 w-8 animate-spin rounded-full border-2 border-green-600 border-t-transparent"></div>
-                <p className="text-sm text-gray-600">Scanning barcode...</p>
+                <p className="text-sm text-gray-600 dark:text-gray-300">Scanning barcode...</p>
               </div>
             ) : (
               <div className="text-center">
-                <Barcode className="mx-auto mb-2 h-12 w-12 text-gray-400" />
-                <p className="text-sm text-gray-600">
+                <Barcode className="mx-auto mb-2 h-12 w-12 text-gray-400 dark:text-gray-500" />
+                <p className="text-sm text-gray-600 dark:text-gray-300">
                   Position barcode in frame
                 </p>
               </div>
@@ -686,11 +686,11 @@ export function ScanBarcodeModal({
             {isScanning ? "Scanning..." : "Start Scan"}
           </Button>
 
-          <div className="rounded-lg bg-green-50 p-3">
-            <h3 className="mb-1 text-sm font-medium text-green-800">
+          <div className="rounded-lg bg-green-50 dark:bg-green-900/30 p-3">
+            <h3 className="mb-1 text-sm font-medium text-green-800 dark:text-green-300">
               📱 Barcode scanning:
             </h3>
-            <ul className="space-y-1 text-xs text-green-700">
+            <ul className="space-y-1 text-xs text-green-700 dark:text-green-400">
               <li>• Point camera at the barcode</li>
               <li>• Keep steady and well-lit</li>
               <li>• Works with most seed packet barcodes</li>

@@ -8,11 +8,11 @@ import { Filter, Plus, Search, Sparkles, Flower, Leaf } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 import {
-  AddPlantModal,
   FloatingActionButton,
   PlantList,
   ScanBarcodeModal,
 } from "./_components/posts";
+import { AddPlantModal } from "../../AddPlantModal";
 import { NuclearTestModal } from "./_components/NuclearTestModal";
 import { EMERGENCY_BREAKING_CHANGE } from "./_components/EMERGENCY_BREAKING_CHANGE";
 import { getPlants, Plant } from "@/lib/plant-service";
