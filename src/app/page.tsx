@@ -45,6 +45,7 @@ export default function GardenDashboard() {
   };
 
   const handleAddManually = () => {
+    console.log("Opening Add Plant Modal");
     setIsAddModalOpen(true);
   };
 
@@ -223,13 +224,11 @@ export default function GardenDashboard() {
         </div>
 
         {/* Floating Action Button */}
-        {hasPlants && (
-          <FloatingActionButton
-            onScanSeedPacket={() => setIsScanModalOpen(true)}
-            onScanBarcode={() => setIsBarcodeModalOpen(true)}
-            onEnterManually={() => setIsAddModalOpen(true)}
-          />
-        )}
+        <FloatingActionButton
+          onScanSeedPacket={() => setIsScanModalOpen(true)}
+          onScanBarcode={() => setIsBarcodeModalOpen(true)}
+          onEnterManually={() => setIsAddModalOpen(true)}
+        />
 
         {/* Modals */}
         <NuclearTestModal
@@ -244,6 +243,13 @@ export default function GardenDashboard() {
           isOpen={isAddModalOpen}
           onClose={() => setIsAddModalOpen(false)}
         />
+
+        {/* Debug Info */}
+        <div className="fixed top-4 left-4 bg-black text-white p-2 text-xs z-50">
+          Scan: {isScanModalOpen ? "OPEN" : "CLOSED"} | Barcode:{" "}
+          {isBarcodeModalOpen ? "OPEN" : "CLOSED"} | Add:{" "}
+          {isAddModalOpen ? "OPEN" : "CLOSED"}
+        </div>
         <EMERGENCY_BREAKING_CHANGE />
       </div>
     </AnnouncerProvider>

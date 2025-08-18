@@ -307,14 +307,15 @@ export function FloatingActionButton({
                 key={item.label}
                 onClick={() => handleOptionClick(item.action)}
                 className={cn(
-                  "flex items-center gap-3 rounded-full bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-3 text-gray-700 dark:text-gray-200 shadow-xl border border-gray-200 dark:border-gray-700",
+                  "flex items-center gap-3 rounded-full bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-3 text-gray-900 dark:text-gray-100 shadow-xl border border-gray-200 dark:border-gray-700",
                   "transition-all duration-300 hover:scale-105 hover:shadow-2xl",
-                  "transform opacity-0 animate-in slide-in-from-bottom-2",
+                  "transform opacity-0",
                   "theme-transition"
                 )}
                 style={{
                   animationDelay: `${index * 100}ms`,
                   animationFillMode: "forwards",
+                  animation: "fadeInUp 0.3s ease-out forwards",
                 }}
               >
                 <div
@@ -363,13 +364,14 @@ export function FloatingActionButton({
         />
       </button>
 
-      {/* Background overlay for menu */}
-      {isMenuOpen && (
-        <div
-          className="fixed inset-0 bg-black/20 dark:bg-black/40 backdrop-blur-sm z-[-1] animate-in fade-in duration-300"
-          onClick={() => setIsMenuOpen(false)}
-        />
-      )}
+                    {/* Background overlay for menu */}
+              {isMenuOpen && (
+                <div 
+                  className="fixed inset-0 bg-black/20 dark:bg-black/40 backdrop-blur-sm z-[-1] transition-opacity duration-300"
+                  style={{ animation: "fade-in 0.3s ease-out" }}
+                  onClick={() => setIsMenuOpen(false)}
+                />
+              )}
     </div>
   );
 }
