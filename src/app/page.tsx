@@ -122,35 +122,35 @@ export default function GardenDashboard() {
           {hasPlants && (
             <StaggeredReveal>
               <div className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-4">
-                <div className="rounded-lg bg-white/80 dark:bg-earth-800/80 p-4 text-center backdrop-blur-sm theme-transition">
+                <div className="rounded-lg bg-white/80 dark:bg-gray-800/80 p-4 text-center backdrop-blur-sm theme-transition">
                   <div className="text-2xl font-bold text-sage-600 dark:text-sage-400">
                     {gardenStats.total}
                   </div>
-                  <div className="text-sm text-earth-600 dark:text-earth-400">
+                  <div className="text-sm text-gray-700 dark:text-gray-200">
                     Total Plants
                   </div>
                 </div>
-                <div className="rounded-lg bg-white/80 dark:bg-earth-800/80 p-4 text-center backdrop-blur-sm theme-transition">
+                <div className="rounded-lg bg-white/80 dark:bg-gray-800/80 p-4 text-center backdrop-blur-sm theme-transition">
                   <div className="text-2xl font-bold text-yellow-600 dark:text-yellow-400">
                     {gardenStats.growing}
                   </div>
-                  <div className="text-sm text-earth-600 dark:text-earth-400">
+                  <div className="text-sm text-gray-700 dark:text-gray-200">
                     Growing
                   </div>
                 </div>
-                <div className="rounded-lg bg-white/80 dark:bg-earth-800/80 p-4 text-center backdrop-blur-sm theme-transition">
+                <div className="rounded-lg bg-white/80 dark:bg-gray-800/80 p-4 text-center backdrop-blur-sm theme-transition">
                   <div className="text-2xl font-bold text-pink-600 dark:text-pink-400">
                     {gardenStats.flowering}
                   </div>
-                  <div className="text-sm text-earth-600 dark:text-earth-400">
+                  <div className="text-sm text-gray-700 dark:text-gray-200">
                     Flowering
                   </div>
                 </div>
-                <div className="rounded-lg bg-white/80 dark:bg-earth-800/80 p-4 text-center backdrop-blur-sm theme-transition">
+                <div className="rounded-lg bg-white/80 dark:bg-gray-800/80 p-4 text-center backdrop-blur-sm theme-transition">
                   <div className="text-2xl font-bold text-green-600 dark:text-green-400">
                     {gardenStats.ready}
                   </div>
-                  <div className="text-sm text-earth-600 dark:text-earth-400">
+                  <div className="text-sm text-gray-700 dark:text-gray-200">
                     Ready
                   </div>
                 </div>
@@ -170,7 +170,7 @@ export default function GardenDashboard() {
                     placeholder="Search plants..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full rounded-lg border border-earth-200 dark:border-earth-700 bg-white/80 dark:bg-earth-800/80 pl-10 pr-4 py-2 text-earth-900 dark:text-earth-100 placeholder-earth-500 dark:placeholder-earth-400 focus:border-sage-500 dark:focus:border-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-500/20 dark:focus:ring-sage-400/20 theme-transition"
+                    className="w-full rounded-lg border border-gray-200 dark:border-gray-600 bg-white/80 dark:bg-gray-800/80 pl-10 pr-4 py-2 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:border-sage-500 dark:focus:border-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-500/20 dark:focus:ring-sage-400/20 theme-transition"
                   />
                 </div>
 
@@ -185,7 +185,7 @@ export default function GardenDashboard() {
                         className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 theme-transition ${
                           selectedFilter === filter.id
                             ? "bg-sage-500 text-white shadow-md"
-                            : "bg-white/80 dark:bg-earth-800/80 text-earth-700 dark:text-earth-300 hover:bg-sage-50 dark:hover:bg-earth-700/80"
+                            : "bg-white/80 dark:bg-gray-800/80 text-gray-700 dark:text-gray-200 hover:bg-sage-50 dark:hover:bg-gray-700/80"
                         }`}
                       >
                         <Icon className="h-4 w-4" />

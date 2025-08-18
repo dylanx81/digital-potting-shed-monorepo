@@ -307,7 +307,7 @@ export function FloatingActionButton({
                 key={item.label}
                 onClick={() => handleOptionClick(item.action)}
                 className={cn(
-                  "flex items-center gap-3 rounded-full bg-white/90 dark:bg-earth-800/90 backdrop-blur-sm px-4 py-3 text-earth-700 dark:text-earth-300 shadow-xl border border-earth-200 dark:border-earth-700",
+                  "flex items-center gap-3 rounded-full bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm px-4 py-3 text-gray-700 dark:text-gray-200 shadow-xl border border-gray-200 dark:border-gray-700",
                   "transition-all duration-300 hover:scale-105 hover:shadow-2xl",
                   "transform opacity-0 animate-in slide-in-from-bottom-2",
                   "theme-transition"
@@ -484,7 +484,7 @@ export function PlantCard({
   return (
     <div
       className={cn(
-        "group relative overflow-hidden rounded-xl border bg-white/90 dark:bg-earth-800/90 backdrop-blur-sm p-6 shadow-lg",
+        "group relative overflow-hidden rounded-xl border bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-6 shadow-lg",
         "transition-all duration-300 hover:scale-105 hover:shadow-2xl",
         "theme-transition"
       )}
@@ -513,10 +513,10 @@ export function PlantCard({
 
       {/* Plant info with enhanced styling */}
       <div className="mb-6">
-        <h3 className="mb-2 text-xl font-bold text-earth-900 dark:text-earth-100 theme-transition">
+        <h3 className="mb-2 text-xl font-bold text-gray-900 dark:text-gray-100 theme-transition">
           {plant.name}
         </h3>
-        <p className="mb-3 text-sm font-medium text-earth-600 dark:text-earth-400 theme-transition">
+        <p className="mb-3 text-sm font-medium text-gray-600 dark:text-gray-300 theme-transition">
           {plant.type}
         </p>
 
@@ -529,56 +529,56 @@ export function PlantCard({
           >
             {status}
           </span>
-          <span className="text-xs font-medium text-earth-500 dark:text-earth-400 theme-transition">
-            {plant.source || "Seed"}
-          </span>
+                      <span className="text-xs font-medium text-gray-500 dark:text-gray-400 theme-transition">
+              {plant.source || "Seed"}
+            </span>
         </div>
 
-        <div className="space-y-2 text-sm">
-          <div className="flex items-center gap-2 text-earth-600 dark:text-earth-400 theme-transition">
-            <div className="h-2 w-2 rounded-full bg-gradient-to-r from-sage-400 to-green-500"></div>
-            📍 {plant.location || "Garden"}
+                  <div className="space-y-2 text-sm">
+            <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300 theme-transition">
+              <div className="h-2 w-2 rounded-full bg-gradient-to-r from-sage-400 to-green-500"></div>
+              📍 {plant.location || "Garden"}
+            </div>
+            <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300 theme-transition">
+              <div className="h-2 w-2 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500"></div>
+              🌱{" "}
+              {plant.planting_date
+                ? Math.floor(
+                    (new Date().getTime() -
+                      new Date(plant.planting_date).getTime()) /
+                      (1000 * 60 * 60 * 24)
+                  )
+                : 0}{" "}
+              days
+            </div>
+            <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300 theme-transition">
+              <div className="h-2 w-2 rounded-full bg-gradient-to-r from-blue-400 to-indigo-500"></div>
+              💧{" "}
+              {plant.last_watered
+                ? new Date(plant.last_watered).toLocaleDateString()
+                : "Never"}
+            </div>
           </div>
-          <div className="flex items-center gap-2 text-earth-600 dark:text-earth-400 theme-transition">
-            <div className="h-2 w-2 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500"></div>
-            🌱{" "}
-            {plant.planting_date
-              ? Math.floor(
-                  (new Date().getTime() -
-                    new Date(plant.planting_date).getTime()) /
-                    (1000 * 60 * 60 * 24)
-                )
-              : 0}{" "}
-            days
-          </div>
-          <div className="flex items-center gap-2 text-earth-600 dark:text-earth-400 theme-transition">
-            <div className="h-2 w-2 rounded-full bg-gradient-to-r from-blue-400 to-indigo-500"></div>
-            💧{" "}
-            {plant.last_watered
-              ? new Date(plant.last_watered).toLocaleDateString()
-              : "Never"}
-          </div>
-        </div>
       </div>
 
       {/* Progress indicator */}
       <div className="mb-6">
-        <div className="mb-2 flex items-center justify-between text-xs font-medium text-earth-600 dark:text-earth-400">
-          <span>Growth Progress</span>
-          <span>
-            {Math.min(
-              100,
-              Math.floor(
-                ((new Date().getTime() -
-                  new Date(plant.planting_date || new Date()).getTime()) /
-                  (1000 * 60 * 60 * 24 * 30)) *
-                  100
-              )
-            )}
-            %
-          </span>
-        </div>
-        <div className="h-2 overflow-hidden rounded-full bg-earth-200 dark:bg-earth-700">
+                  <div className="mb-2 flex items-center justify-between text-xs font-medium text-gray-600 dark:text-gray-400">
+            <span>Growth Progress</span>
+            <span>
+              {Math.min(
+                100,
+                Math.floor(
+                  ((new Date().getTime() -
+                    new Date(plant.planting_date || new Date()).getTime()) /
+                    (1000 * 60 * 60 * 24 * 30)) *
+                    100
+                )
+              )}
+              %
+            </span>
+          </div>
+          <div className="h-2 overflow-hidden rounded-full bg-gray-200 dark:bg-gray-700">
           <div
             className={cn(
               "h-full rounded-full bg-gradient-to-r transition-all duration-500",
